@@ -36,19 +36,24 @@ class ImagePublisherHomebusApp < Homebus::App
   end
 
   def work!
+    threads = []
+
     @devices.each do |device|
-      image = _get_image(device.serial_number)
+      threads << Thread.new do
+        image = _get_image(device.serial_number)
 
-      if image
-        device.publish! DDC_IMAGE, image
-      else
-        puts "image failed for #{device.serial_number}"
-      end
-
-      if @options[:verbose]
-        pp results
+        if image
+          device.publish! DDC_IMAGE, image
+          if @options[:verbose]
+            puts "got image from #{device.name}"
+          end
+        else
+          puts "image failed for #{device.name}"
+        end
       end
     end
+
+    threads.each { |thr| thr.join }
 
     sleep update_interval
   end
