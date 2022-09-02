@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'homebus-image-publisher/options'
+require 'homebus-image-publisher/app'
+
+options = HomebusImagePublisher::Options.new
+app = HomebusImagePublisher::App.new(options.options)
+app.run!
+

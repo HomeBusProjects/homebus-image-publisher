@@ -1,6 +1,8 @@
 require 'homebus'
 
-class ImagePublisherHomebusAppOptions < Homebus::Options
+require 'homebus-image-publisher/version'
+
+class HomebusImagePublisher::Options < Homebus::Options
   def app_options(op)
     provision_help = 'homebus-image-publisher provision'
     add_help       = 'homebus-image-publisher add URL'
@@ -25,7 +27,7 @@ class ImagePublisherHomebusAppOptions < Homebus::Options
   end
 
   def version
-    '0.0.1'
+    HomebusImagePublisher::VERSION
   end
 
   def name

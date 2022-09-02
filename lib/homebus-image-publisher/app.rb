@@ -7,7 +7,7 @@ require 'timeout'
 
 require 'pp'
 
-class ImagePublisherHomebusApp < Homebus::App
+class HomebusImagePublisher::App < Homebus::App
   DDC_IMAGE = 'org.homebus.experimental.image'
   CONFIG_FILE = '.homebus-image-publisher.json'
 
